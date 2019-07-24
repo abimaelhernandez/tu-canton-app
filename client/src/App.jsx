@@ -6,7 +6,7 @@ export default class App extends Component {
   constructor(){
     super();
     this.state = {
-      equipos : 0
+      equipos : []
     }
   }
 
@@ -14,7 +14,10 @@ getTeams = () => {
   console.log("getting teams");
   axios.get('/getTeams')
     .then(res => {
-      console.log('get teams enpoint :', res);
+      this.setState({
+        equipos: res.data
+      })
+      console.log('get teams enpoint state:', this.state.equipos);
     })
     .catch( error =>{
       console.log("this is an error message  get teams :", error );
@@ -22,6 +25,7 @@ getTeams = () => {
 }
   render(){
     console.log("this is equipos state :", this.state.equipos);
+    let object1 = this.state.equipos;
     return(
         <div className="App">
           <div className="parent-container">
@@ -30,6 +34,13 @@ getTeams = () => {
             </div>
             <div className="dropDownContainer">
               <div className="dropdown">
+                {object1.map((obj,i)=> {
+                  console.log('hi team names :',obj.team_name);
+                  return <ul>
+                    <li>{obj.team_name}</li>
+
+                  </ul>
+                })}
                 <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Dropdown button
                 </button>
