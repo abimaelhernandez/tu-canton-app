@@ -1,15 +1,19 @@
-body{
-
+.App{
+  padding:20px;
 }
 
-div{
 
-  h1{
-     color:purple;
+.getTeamContainer{
+  position: relative;
+  padding: 10px;
+
+  .getTeamsButton {
+    position:relative;
+    text-transform: uppercase;
   }
-  p{
-    color:green;
-    border-style: solid;
-    border-color: red;
-  }
+}
+
+.dropDownContainer {
+  position: relative;
+  padding: 10px;
 }
