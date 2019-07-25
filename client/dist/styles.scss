@@ -16,4 +16,9 @@
 .dropDownContainer {
   position: relative;
   padding: 10px;
+  display:flex;
+
+  div {
+    flex-basis: 100%;
+  }
 }

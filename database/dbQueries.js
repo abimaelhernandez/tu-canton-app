@@ -15,7 +15,7 @@ connection.connect(function(err) {
   console.log("Connected!");
 });
 
-const thisIsMyFunction = (cb) => {
+const queryTeams = (cb) => {
   connection.query('SELECT team_name from catalogo_de_equipos', (err, result, fields)=> {
     if (err){
       cb(err, null);
@@ -25,6 +25,16 @@ const thisIsMyFunction = (cb) => {
   })
 }
 
+const queryUsers = (cb) => {
+  connection.query('SELECT * from catalogo_de_usuarios where user_team_name = "titans"', (err, result, fields)=> {
+    if (err){
+      cb(err, null);
+    } else {
+      cb(null, result)
+    }
+  })
+}
 module.exports = {
-  thisIsMyFunction
+  queryTeams,
+  queryUsers
 }
