@@ -8,7 +8,7 @@ export default class App extends Component {
     super();
     this.state = {
       equipos : [],
-      sameTeam: {},
+      sameTeam: [],
       container : {
         name : ''
       }
@@ -16,7 +16,6 @@ export default class App extends Component {
   }
 
 getTeams = () => {
-  console.log("getting teams");
   axios.get('/getTeams')
     .then(res => {
       this.setState({
@@ -39,14 +38,12 @@ passToBack = (name, container) =>{
   let sendProp = {...this.state.container}
     container.name = name;
     this.setState({sendProp})
-    console.log('passing to back :', container);
     axios.post("/getSpecificTeam", container)
     .then(res => {
       console.log('response of getSpecificTeam endpoint :', res.data);
       this.setState({
         sameTeam : res.data
       })
-      console.log('same team', {...this.state});
     })
     .catch(error => {
       console.log('error of getSpecificTeam :', error );
@@ -55,6 +52,7 @@ passToBack = (name, container) =>{
 
   render(){
     let object1 = this.state.equipos;
+    console.log("mt object 1 ", object1);
     return(
         <div className="App">
           <div className="parent-container">
@@ -69,8 +67,8 @@ passToBack = (name, container) =>{
                 </button>
                 <section className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 {object1.map((obj)=> {
-                  return <ul>
-                    <li className="dropdown-item" href="#" onClick={this.getSpecificTeam.bind(this, obj)}>{obj.team_name}</li>
+                  return <ul key={obj.team_name}>
+                    <li  className="dropdown-item" href="#" onClick={this.getSpecificTeam.bind(this, obj)}> Team name: {obj.team_name}</li>
                   </ul>
                 })}
                   <a className="dropdown-item" href="#">Press GET TEAMS </a>
