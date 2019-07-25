@@ -8,7 +8,7 @@ export default class App extends Component {
     super();
     this.state = {
       equipos : [],
-      name: '',
+      sameTeam: {},
       container : {
         name : ''
       }
@@ -40,12 +40,16 @@ passToBack = (name, container) =>{
     container.name = name;
     this.setState({sendProp})
     console.log('passing to back :', container);
-    axios.post("/rfcEndPoint", container)
+    axios.post("/getSpecificTeam", container)
     .then(res => {
-      console.log('response of RFC endpoint :', res);
+      console.log('response of getSpecificTeam endpoint :', res.data);
+      this.setState({
+        sameTeam : res.data
+      })
+      console.log('same team', {...this.state});
     })
     .catch(error => {
-      console.log('error of rfc enpoint :', error );
+      console.log('error of getSpecificTeam :', error );
     })
 }
 
@@ -74,7 +78,7 @@ passToBack = (name, container) =>{
               </div>
 
               <div>
-                <SecondDropDown name={this.state.name}/>
+                <SecondDropDown team={this.state.sameTeam}/>
               </div>
             </div>
           </div>

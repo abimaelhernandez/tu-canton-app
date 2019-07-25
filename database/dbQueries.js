@@ -25,15 +25,19 @@ const queryTeams = (cb) => {
   })
 }
 
-const queryUsers = (cb) => {
-  connection.query('SELECT * from catalogo_de_usuarios where user_team_name = "titans"', (err, result, fields)=> {
-    if (err){
-      cb(err, null);
-    } else {
-      cb(null, result)
-    }
+const queryUsers = (teamName) => {
+  return new Promise ((resolve, reject) =>{
+    connection.query('SELECT * from catalogo_de_usuarios WHERE user_team_name = ?', [teamName], (err, results, fields) => {
+      if(results){
+        console.log('results from query db :', results);
+        return resolve(results)
+      } else
+      console.log('error in query db : ', err);
+      return reject(err)
+    })
   })
 }
+
 module.exports = {
   queryTeams,
   queryUsers
