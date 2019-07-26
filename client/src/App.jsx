@@ -9,6 +9,7 @@ export default class App extends Component {
     this.state = {
       equipos : [],
       sameTeam: [],
+      theID : '',
       container : {
         name : ''
       }
@@ -21,7 +22,7 @@ getTeams = () => {
       this.setState({
         equipos: res.data
       })
-      console.log('get teams enpoint state:', this.state.equipos);
+      console.log('get teams enpoint state:', res);
     })
     .catch( error =>{
       console.log("this is an error message  get teams :", error );
@@ -40,7 +41,7 @@ passToBack = (name, container) =>{
     this.setState({sendProp})
     axios.post("/getSpecificTeam", container)
     .then(res => {
-      console.log('response of getSpecificTeam endpoint :', res.data);
+      console.log('response of getSpecificTeam endpoint :', res);
       this.setState({
         sameTeam : res.data
       })
@@ -50,9 +51,16 @@ passToBack = (name, container) =>{
     })
 }
 
+getID = (obj) => {
+  this.setState({theID : obj.id})
+}
+
+
   render(){
     let object1 = this.state.equipos;
-    console.log("mt object 1 ", object1);
+    let object2 = this.state.sameTeam;
+    let idForQuery = this.state.theID;
+    console.log("in render APP  ", object1, this.state.theID);
     return(
         <div className="App">
           <div className="parent-container">
@@ -63,7 +71,7 @@ passToBack = (name, container) =>{
 
               <div className="dropdown">
                 <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown button
+                  Team Dropdown 
                 </button>
                 <section className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 {object1.map((obj)=> {
@@ -76,8 +84,24 @@ passToBack = (name, container) =>{
               </div>
 
               <div>
-                <SecondDropDown team={this.state.sameTeam}/>
+                  <div className="dropdown">
+                    <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Users Drop Down
+                    </button>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      {object2.map((obj,i) => {
+                        return <ul key={obj.id}>
+                          <li onClick={this.getID.bind(this, obj)}>User: {obj.user_name}</li>
+                        </ul>
+                      })}
+                      <a className="dropdown-item" href="#">Press Team Drop Down </a>
+                    </div>
+                  </div>
               </div>
+            </div>
+
+            <div className="table-container">
+              <SecondDropDown idForQuery={idForQuery}/>
             </div>
           </div>
         </div>

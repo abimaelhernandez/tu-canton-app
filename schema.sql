@@ -53,3 +53,16 @@ CREATE TABLE clientes (
 );
 
 INSERT INTO clientes (user_id, email) VALUES ("1", "Creator@awards.com");
+INSERT INTO clientes (user_id, email) VALUES ("2", "abimael@awards.com");
+INSERT INTO clientes (user_id, email) VALUES ("3", "javier@awards.com");
+INSERT INTO clientes (user_id, email) VALUES ("4", "eduardo4@awards.com");
+INSERT INTO clientes (user_id, email) VALUES ("5", "fernanda5@awards.com");
+INSERT INTO clientes (user_id, email) VALUES ("6", "july6@awards.com");
+INSERT INTO clientes (user_id, email) VALUES ("7", "hC.holaCode@awards.com");
+INSERT INTO clientes (user_id, email) VALUES ("8", "sebastian8@awards.com");
+INSERT INTO clientes (user_id, email) VALUES ("9", "5989742120@awards.com");
+INSERT INTO clientes (user_id, email) VALUES ("10", "antwan@awards.com");
+INSERT INTO clientes (user_id, email) VALUES ("11", "sharon@awards.com");
+INSERT INTO clientes (user_id, email) VALUES ("12", "gabbyl@awards.com");
+INSERT INTO clientes (user_id, email) VALUES ("13", "jennilaCoco@awards.com");
+INSERT INTO clientes (user_id, email) VALUES ("14", "testEmail23@awards.com");
