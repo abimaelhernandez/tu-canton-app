@@ -38,7 +38,21 @@ const queryUsers = (teamName) => {
   })
 }
 
+const queryClient = (clientID) => {
+  return new Promise ((resolve,reject) => {
+    connection.query('SELECT * from clientes WHERE user_id = ?', [clientID], (err, results, fields) => {
+      if(results){
+        console.log('results from query db :', results);
+        return resolve(results)
+      } else
+      console.log('error in query db : ', err);
+      return reject(err)
+    })
+
+  })
+}
 module.exports = {
   queryTeams,
-  queryUsers
+  queryUsers,
+  queryClient
 }

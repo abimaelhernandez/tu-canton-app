@@ -24,5 +24,7 @@ app.get('/getTeams', (req, res) => {
 
 app.post('/getSpecificTeam', route.getResponce)
 
+app.post('/clientes', route.getClient)
+
 
 module.exports = app;
