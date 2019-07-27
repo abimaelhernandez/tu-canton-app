@@ -48,7 +48,7 @@ INSERT INTO  catalogo_de_usuarios (nombre, equipo_id) VALUES ("jenny", 5);
 
 CREATE TABLE clientes (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  user_id INT NOT NULL,
+  usuario_id INT NOT NULL,
   email varchar(55)
 );
 

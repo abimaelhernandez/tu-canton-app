@@ -31,7 +31,19 @@ app.post('/clientes', route.getClient)
 app.get(`/users/:id`, (req,res) => {
   let url = req._parsedUrl.pathname.split('/');
   let id = url[2]
-  database.connection.query('SELECT * from catalogo_de_usuarios WHERE id = ?',[id], (err, result, fields)=> {
+  database.connection.query('SELECT * from catalogo_de_usuarios WHERE equipo_id = ?',[id], (err, result, fields)=> {
+      if (err){
+        res.json(err);
+      } else {
+        res.json(result)
+      }
+  })
+});
+
+app.get(`/getClientes/:id`, (req,res) => {
+  let url = req._parsedUrl.pathname.split('/');
+  let id = url[2]
+  database.connection.query('SELECT * from clientes WHERE id = ?',[id], (err, result, fields)=> {
       if (err){
         res.json(err);
       } else {
