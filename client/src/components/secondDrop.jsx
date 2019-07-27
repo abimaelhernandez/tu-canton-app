@@ -30,7 +30,6 @@ getClient = (passedID, container) => {
   .catch(err =>{
     console.log(err);
   })
-  console.log('state in render GET CLIENT:', passedID, container)
 }
 
   render(){

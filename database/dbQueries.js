@@ -1,7 +1,7 @@
 require('dotenv').config()
-console.log('inside of db Queries :');
-
 const mysql = require('mysql');
+const bodyParser = require("body-parser");
+
 
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -48,11 +48,27 @@ const queryClient = (clientID) => {
       console.log('error in query db : ', err);
       return reject(err)
     })
-
   })
 }
+
+
+const users = (id) => {
+  console.log('backend :',id);
+    return new Promise ((resolve,reject)=>{
+      connection.query('SELECT * from catalogo_de_usuarios', (err, result, fields)=> {
+        if (err){
+          return reject(err, null);
+        } else {
+          return resolve(null, result)
+        }
+    })
+  })
+}
+
 module.exports = {
   queryTeams,
   queryUsers,
-  queryClient
+  queryClient,
+  users,
+  connection
 }

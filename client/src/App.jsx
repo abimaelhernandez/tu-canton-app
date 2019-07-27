@@ -41,13 +41,13 @@ passToBack = (name, container) =>{
     this.setState({sendProp})
     axios.post("/getSpecificTeam", container)
     .then(res => {
-      console.log('response of getSpecificTeam endpoint :', res);
+      console.log(res);
       this.setState({
         sameTeam : res.data
       })
     })
     .catch(error => {
-      console.log('error of getSpecificTeam :', error );
+      console.log('error  :', error );
     })
 }
 
@@ -60,7 +60,6 @@ getID = (obj) => {
     let object1 = this.state.equipos;
     let object2 = this.state.sameTeam;
     let idForQuery = this.state.theID;
-    console.log("in render APP  ", object1, this.state.theID);
     return(
         <div className="App">
           <div className="parent-container">
@@ -71,7 +70,7 @@ getID = (obj) => {
 
               <div className="dropdown">
                 <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Team Dropdown 
+                  Team Dropdown
                 </button>
                 <section className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 {object1.map((obj)=> {
