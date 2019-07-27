@@ -16,7 +16,7 @@ connection.connect(function(err) {
 });
 
 const queryTeams = (cb) => {
-  connection.query('SELECT team_name from catalogo_de_equipos', (err, result, fields)=> {
+  connection.query('SELECT * from catalogo_de_equipos', (err, result, fields)=> {
     if (err){
       cb(err, null);
     } else {
@@ -25,9 +25,9 @@ const queryTeams = (cb) => {
   })
 }
 
-const queryUsers = (teamName) => {
+const queryUsers = (teamID) => {
   return new Promise ((resolve, reject) =>{
-    connection.query('SELECT * from catalogo_de_usuarios WHERE user_team_name = ?', [teamName], (err, results, fields) => {
+    connection.query('SELECT * from catalogo_de_usuarios WHERE equipo_id = ?', [teamID], (err, results, fields) => {
       if(results){
         console.log('results from query db :', results);
         return resolve(results)

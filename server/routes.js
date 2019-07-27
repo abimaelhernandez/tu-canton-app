@@ -1,10 +1,10 @@
 const database = require("../database/dbQueries.js");
 
-exports.getResponce =(req, res) => {
+exports.getResponce = (req, res) => {
   console.log(' getResponce dentro de routes.js', req.body);
-  let teamName = req.body.name;
+  let teamID = req.body.id;
   //res.send('hola')
-  database.queryUsers(teamName)
+  database.queryUsers(teamID)
   .then(data => {
     res.send(data)
   })

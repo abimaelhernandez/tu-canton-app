@@ -11,7 +11,7 @@ export default class App extends Component {
       sameTeam: [],
       theID : '',
       container : {
-        name : ''
+        id : ''
       }
     }
   }
@@ -30,14 +30,14 @@ getTeams = () => {
 }
 
 getSpecificTeam (obj) {
-    let name = obj.team_name;
+    let teamId = obj.id;
     let container = this.state.container
-    this.passToBack(name, container)
+    this.passToBack(teamId, container)
 }
 
-passToBack = (name, container) =>{
+passToBack = (teamId, container) =>{
   let sendProp = {...this.state.container}
-    container.name = name;
+    container.id = teamId;
     this.setState({sendProp})
     axios.post("/getSpecificTeam", container)
     .then(res => {
@@ -74,8 +74,8 @@ getID = (obj) => {
                 </button>
                 <section className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 {object1.map((obj)=> {
-                  return <ul key={obj.team_name}>
-                    <li  className="dropdown-item" href="#" onClick={this.getSpecificTeam.bind(this, obj)}> Team name: {obj.team_name}</li>
+                  return <ul key={obj.nombre}>
+                    <li  className="dropdown-item" href="#" onClick={this.getSpecificTeam.bind(this, obj)}> Team name: {obj.nombre}</li>
                   </ul>
                 })}
                   <a className="dropdown-item" href="#">Press GET TEAMS </a>
@@ -90,7 +90,7 @@ getID = (obj) => {
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       {object2.map((obj,i) => {
                         return <ul key={obj.id}>
-                          <li onClick={this.getID.bind(this, obj)}>User: {obj.user_name}</li>
+                          <li onClick={this.getID.bind(this, obj)}>User: {obj.nombre}</li>
                         </ul>
                       })}
                       <a className="dropdown-item" href="#">Press Team Drop Down </a>

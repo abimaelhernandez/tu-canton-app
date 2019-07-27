@@ -25,23 +25,19 @@ app.get('/getTeams', (req, res) => {
 app.post('/getSpecificTeam', route.getResponce)
 
 app.post('/clientes', route.getClient)
-let users = { hola :"mundo"}
-
 /*=================================
-
  API querys
 ==================================*/
-
 app.get(`/users/:id`, (req,res) => {
   let url = req._parsedUrl.pathname.split('/');
   let id = url[2]
   database.connection.query('SELECT * from catalogo_de_usuarios WHERE id = ?',[id], (err, result, fields)=> {
-          if (err){
-            res.json(err);
-          } else {
-            res.json(result)
-          }
-      })
-    });
+      if (err){
+        res.json(err);
+      } else {
+        res.json(result)
+      }
+  })
+});
 
 module.exports = app;
