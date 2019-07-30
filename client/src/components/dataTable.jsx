@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-export default class SecondDropDown extends Component {
+export default class DataTable extends Component {
   constructor(){
     super();
     this.state = {
@@ -36,8 +36,18 @@ getClient = (passedID, container) => {
     let object3 = this.state.clientInfo;
     if(this.props.idForQuery === ''){
       return(
-        <div className="alert alert-danger dangerAlert" role="alert">
-          <h1>Select a User to Table with information</h1>
+        <div>
+        <div className="the-table-component">
+          <table className="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Client ID</th>
+                <th scope="col">User ID</th>
+                <th scope="col">Email</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
         </div>
       )
     }
@@ -52,11 +62,11 @@ getClient = (passedID, container) => {
               <th scope="col">Email</th>
             </tr>
           </thead>
-          {object3.map((obj)=>{
+          {object3.map((obj) => {
           return <tbody key={obj.id}>
                 <tr>
                 <th scope="row">{obj.id}</th>
-                <td>{obj.user_id}</td>
+                <td>{obj.usuario_id}</td>
                 <td>{obj.email}</td>
               </tr>
           </tbody>

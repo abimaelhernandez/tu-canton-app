@@ -40,7 +40,7 @@ const queryUsers = (teamID) => {
 
 const queryClient = (clientID) => {
   return new Promise ((resolve,reject) => {
-    connection.query('SELECT * from clientes WHERE user_id = ?', [clientID], (err, results, fields) => {
+    connection.query('SELECT * from clientes WHERE usuario_id = ?', [clientID], (err, results, fields) => {
       if(results){
         console.log('results from query db :', results);
         return resolve(results)

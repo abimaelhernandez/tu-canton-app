@@ -1,8 +1,15 @@
+
 .App{
   padding:20px;
+  display: flex;
+  justify-content: center;
+
 }
 
-
+.parent-container{
+  position: relative;
+  width:60%;
+}
 .getTeamContainer{
   position: relative;
   padding: 10px;
@@ -20,5 +27,26 @@
 
   div {
     flex-basis: 100%;
+  }
+
+  .dropdown-item {
+    position: relative;
+    font-size: .80em;    
+  }
+}
+
+
+@media screen and (max-width: 414px){
+
+  .App{
+    padding:5px;
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .parent-container{
+    position: relative;
+    width:90%;
   }
 }
